@@ -4,11 +4,11 @@ import unittest
 
 class NewVisitorTest(unittest.TestCase):
     """TODO write description"""
-
     def setUp(self):
         self.browser = webdriver.Firefox()
 
     def tearDown(self):
+        input('Press Enter to continue...')
         self.browser.quit()
 
     def test_can_start_a_list_and_retrieve_it_later(self):
@@ -45,4 +45,3 @@ class NewVisitorTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(warnings='ignore')
-
