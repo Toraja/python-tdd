@@ -1,7 +1,5 @@
 from django.test import TestCase
 
-from lists.views import home_page
-
 
 class HomePageTest(TestCase):
     """description"""
