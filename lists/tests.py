@@ -3,12 +3,14 @@ from django.test import TestCase
 from lists.models import Item
 
 
-class HomePageTest(TestCase):
+class HomePageGetTest(TestCase):
     """description"""
     def test_home_page_returns_correct_html(self):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'home.html')
 
+
+class HomePagePostTest(TestCase):
     def test_can_save_a_POST_request(self):
         self.client.post('/', data={'item_text': 'A new list item'})
 
@@ -20,12 +22,8 @@ class HomePageTest(TestCase):
         response = self.client.post('/', data={'item_text': 'A new list item'})
         self.assertRedirects(response, '/lists/the-only-list-in-the-world/')
 
-    def test_only_saves_items_when_necessary(self):
-        self.client.get('/')
-        self.assertEqual(Item.objects.count(), 0)
 
-
-class ListViewTest(TestCase):
+class ListViewGetTest(TestCase):
     def test_uses_list_template(self):
         response = self.client.get('/lists/the-only-list-in-the-world/')
         self.assertTemplateUsed(response, 'list.html')
