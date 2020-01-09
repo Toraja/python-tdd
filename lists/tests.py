@@ -5,7 +5,7 @@ from lists.models import Item
 
 class HomePageGetTest(TestCase):
     """description"""
-    def test_home_page_returns_correct_html(self):
+    def test_uses_home_template(self):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'home.html')
 
