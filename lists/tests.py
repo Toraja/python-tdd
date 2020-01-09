@@ -26,15 +26,6 @@ class HomePageTest(TestCase):
         self.client.get('/')
         self.assertEqual(Item.objects.count(), 0)
 
-    def test_displays_all_list_items(self):
-        Item.objects.create(text='itemey 1')
-        Item.objects.create(text='itemey 2')
-
-        response = self.client.get('/')
-
-        self.assertContains(response, 'itemey 1')
-        self.assertContains(response, 'itemey 2')
-
 
 class ListViewTest(TestCase):
     def test_displays_all_list_items(self):
