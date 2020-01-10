@@ -44,16 +44,6 @@ class ListViewGetTest(TestCase):
         self.assertNotContains(response, 'other list item 1')
         self.assertNotContains(response, 'other list item 2')
 
-    def test_displays_all_list_items(self):
-        list_ = List.objects.create()
-        Item.objects.create(text='itemey 1', list=list_)
-        Item.objects.create(text='itemey 2', list=list_)
-
-        response = self.client.get('/lists/the-only-list-in-the-world/')
-
-        self.assertContains(response, 'itemey 1')
-        self.assertContains(response, 'itemey 2')
-
 
 class ListAndItemModelTest(TestCase):
     def test_saving_and_retrieving_items(self):
