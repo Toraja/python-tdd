@@ -10,7 +10,7 @@ INTERVAL_SEC = 0.5
 
 
 class NewVisitorTest(LiveServerTestCase):
-    """TODO write description"""
+
     debug = os.environ.get('debug') == '1'
 
     def setUp(self):

@@ -4,7 +4,7 @@ from lists.models import Item, List
 
 
 class HomePageView(View):
-    """description"""
+
     def get(self, request, *args, **kwargs):
         return render(request, 'home.html')
 
@@ -15,7 +15,7 @@ class HomePageView(View):
 
 
 class ListPageView(View):
-    """description"""
+
     def get(self, request, list_id):
         list_ = List.objects.get(id=list_id)
         items = Item.objects.filter(list=list_)

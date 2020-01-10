@@ -6,7 +6,6 @@ class List(models.Model):
 
 
 class Item(models.Model):
-    """Docstring for Item. """
 
     text = models.TextField(default='')
     list = models.ForeignKey(List, default=None)
