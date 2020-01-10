@@ -4,12 +4,14 @@ from lists.models import Item, List
 
 
 class HomePageGetTest(TestCase):
+
     def test_uses_home_template(self):
         response = self.client.get('/')
         self.assertTemplateUsed(response, 'home.html')
 
 
 class HomePagePostTest(TestCase):
+
     def test_can_save_a_POST_request(self):
         self.client.post('/', data={'item_text': 'A new list item'})
 
@@ -24,6 +26,7 @@ class HomePagePostTest(TestCase):
 
 
 class ItemViewGetTest(TestCase):
+
     def test_uses_list_template(self):
         list_ = List.objects.create()
         response = self.client.get(f'/lists/{list_.id}/')
@@ -46,6 +49,7 @@ class ItemViewGetTest(TestCase):
 
 
 class ItemViewPostTest(TestCase):
+
     def test_can_save_a_POST_request_to_an_existing_list(self):
         correct_list = List.objects.create()
         List.objects.create()  # dummy list
@@ -70,6 +74,7 @@ class ItemViewPostTest(TestCase):
 
 
 class ListAndItemModelTest(TestCase):
+
     def test_saving_and_retrieving_items(self):
         list_ = List()
         list_.save()
