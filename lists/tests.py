@@ -23,7 +23,7 @@ class HomePagePostTest(TestCase):
         self.assertRedirects(response, f'/lists/{new_list.id}/')
 
 
-class ListViewGetTest(TestCase):
+class ItemViewGetTest(TestCase):
     def test_uses_list_template(self):
         list_ = List.objects.create()
         response = self.client.get(f'/lists/{list_.id}/')
@@ -45,7 +45,7 @@ class ListViewGetTest(TestCase):
         self.assertNotContains(response, 'other list item 2')
 
 
-class ListViewPostTest(TestCase):
+class ItemViewPostTest(TestCase):
     def test_can_save_a_POST_request_to_an_existing_list(self):
         correct_list = List.objects.create()
         List.objects.create()  # dummy list

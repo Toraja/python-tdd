@@ -15,6 +15,7 @@ class HomePageView(View):
 
 
 class ListPageView(View):
+class ItemView(View):
 
     def get(self, request, list_id):
         list_ = List.objects.get(id=list_id)
