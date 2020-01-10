@@ -18,7 +18,5 @@ from lists import views
 
 urlpatterns = [
     url(r'^$', views.HomePageView.as_view(), name='home'),
-    url(r'^lists/the-only-list-in-the-world/$',
-        views.ListPageView.as_view(),
-        name='view_list'),
+    url(r'^lists/(.+)/$', views.ListPageView.as_view(), name='view_list'),
 ]
