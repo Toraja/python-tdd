@@ -8,13 +8,15 @@ class HomePageView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'home.html')
 
+
+class ListView(View):
+
     def post(self, request, *args, **kwargs):
         list_ = List.objects.create()
         Item.objects.create(text=request.POST['item_text'], list=list_)
         return redirect(f'/lists/{list_.id}/')
 
 
-class ListPageView(View):
 class ItemView(View):
 
     def get(self, request, list_id):
