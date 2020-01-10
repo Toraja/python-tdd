@@ -46,6 +46,30 @@ class ListViewGetTest(TestCase):
         self.assertNotContains(response, 'other list item 2')
 
 
+class ListViewPostTest(TestCase):
+    def test_can_save_a_POST_request_to_an_existing_list(self):
+        correct_list = List.objects.create()
+        List.objects.create()  # dummy list
+
+        self.client.post(f'/lists/{correct_list.id}/',
+                         data={'item_text': 'A new item for an existing list'})
+
+        self.assertEqual(Item.objects.count(), 1)
+        new_item = Item.objects.first()
+        self.assertEqual(new_item.text, 'A new item for an existing list')
+        self.assertEqual(new_item.list, correct_list)
+
+    def test_redirects_to_list_view(self):
+        correct_list = List.objects.create()
+        List.objects.create()  # dummy list
+
+        response = self.client.post(
+            f'/lists/{correct_list.id}/',
+            data={'item_text': 'A new item for an existing list'})
+
+        self.assertRedirects(response, f'/lists/{correct_list.id}/')
+
+
 class ListAndItemModelTest(TestCase):
     def test_saving_and_retrieving_items(self):
         list_ = List()
