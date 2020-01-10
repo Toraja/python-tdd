@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import WebDriverException
 import time
+import os
 
 MAX_WAIT_SEC = 10
 INTERVAL_SEC = 0.5
@@ -10,11 +11,14 @@ INTERVAL_SEC = 0.5
 
 class NewVisitorTest(LiveServerTestCase):
     """TODO write description"""
+    debug = os.environ.get('debug') == '1'
+
     def setUp(self):
         self.browser = webdriver.Firefox()
 
     def tearDown(self):
-        input('Press Enter to continue...')
+        if self.debug:
+            input('Press Enter to continue...')
         self.browser.quit()
 
     def run_func_until_time_has_passed(self, max_wait_sec, interval_sec, func,
