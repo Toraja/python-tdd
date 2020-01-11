@@ -136,3 +136,29 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertIn('Buy milk', page_text)
 
         # Satisfied, they both go back to sleep.
+
+    def test_layout_and_styling(self):
+        # Edith goes to the hoem page
+        self.browser.get(self.live_server_url)
+        self.browser.maximize_window()
+
+        # She notices the input box is nicely centered
+        browser_width = self.browser.get_window_size()['width']
+        inputbox = self.browser.find_element_by_id(ID_INPUTBOX)
+        inputbox_x_cordinate = inputbox.location['x'] + \
+            inputbox.size['width']/2
+        self.assertAlmostEqual(inputbox_x_cordinate,
+                               browser_width / 2, delta=10)
+
+        # She starts a new list and sees the input is nicely centered there too
+        inputbox.send_keys('testing')
+        inputbox.send_keys(Keys.ENTER)
+        self.retry_assertion(MAX_WAIT_SEC,
+                             INTERVAL_SEC,
+                             self.check_for_row_in_list_table,
+                             row_text='1:testing')
+        inputbox = self.browser.find_element_by_id(ID_INPUTBOX)
+        inputbox_x_cordinate = inputbox.location['x'] + \
+            inputbox.size['width']/2
+        self.assertAlmostEqual(inputbox_x_cordinate,
+                               browser_width / 2, delta=10)
