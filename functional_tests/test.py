@@ -22,12 +22,11 @@ class NewVisitorTest(LiveServerTestCase):
             input('Press Enter to continue...')
         self.browser.quit()
 
-    def run_func_until_time_has_passed(self, max_wait_sec, interval_sec, func,
-                                       **kwargs):
+    def retry_assertion(self, timeout_sec, interval_sec, func, **kwargs):
         start_time = time.time()
 
         def time_has_passed():
-            if time.time() - start_time > max_wait_sec:
+            if time.time() - start_time > timeout_sec:
                 return True
             return False
 
@@ -67,10 +66,10 @@ class NewVisitorTest(LiveServerTestCase):
         # When she hits enter, the page updates, and now the page lists
         # "1: Buy peacock feathers" as an item in a to-to list
         inputbox.send_keys(Keys.ENTER)
-        self.run_func_until_time_has_passed(MAX_WAIT_SEC,
-                                            INTERVAL_SEC,
-                                            self.check_for_row_in_list_table,
-                                            row_text='1:Buy peacock feathers')
+        self.retry_assertion(MAX_WAIT_SEC,
+                             INTERVAL_SEC,
+                             self.check_for_row_in_list_table,
+                             row_text='1:Buy peacock feathers')
 
         # There is still a text box invinting her to add another item.
         # She enters "Use peacock feathers to make a fly"
@@ -80,15 +79,14 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox.send_keys(Keys.ENTER)
 
         # The page updates again, now shows both items on her list
-        self.run_func_until_time_has_passed(MAX_WAIT_SEC,
-                                            INTERVAL_SEC,
-                                            self.check_for_row_in_list_table,
-                                            row_text='1:Buy peacock feathers')
-        self.run_func_until_time_has_passed(
-            MAX_WAIT_SEC,
-            INTERVAL_SEC,
-            self.check_for_row_in_list_table,
-            row_text='2:Use peacock feathers to make a fly')
+        self.retry_assertion(MAX_WAIT_SEC,
+                             INTERVAL_SEC,
+                             self.check_for_row_in_list_table,
+                             row_text='1:Buy peacock feathers')
+        self.retry_assertion(MAX_WAIT_SEC,
+                             INTERVAL_SEC,
+                             self.check_for_row_in_list_table,
+                             row_text='2:Use peacock feathers to make a fly')
 
     def test_multiple_users_can_start_lists_at_different_urls(self):
         # Edith starts a new to-do list
@@ -96,10 +94,10 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox = self.browser.find_element_by_id(ID_INPUTBOX)
         inputbox.send_keys('Buy peacock feathers')
         inputbox.send_keys(Keys.ENTER)
-        self.run_func_until_time_has_passed(MAX_WAIT_SEC,
-                                            INTERVAL_SEC,
-                                            self.check_for_row_in_list_table,
-                                            row_text='1:Buy peacock feathers')
+        self.retry_assertion(MAX_WAIT_SEC,
+                             INTERVAL_SEC,
+                             self.check_for_row_in_list_table,
+                             row_text='1:Buy peacock feathers')
 
         # She notices that her list has a unique URL
         edith_list_url = self.browser.current_url
@@ -122,10 +120,10 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox = self.browser.find_element_by_id(ID_INPUTBOX)
         inputbox.send_keys('Buy milk')
         inputbox.send_keys(Keys.ENTER)
-        self.run_func_until_time_has_passed(MAX_WAIT_SEC,
-                                            INTERVAL_SEC,
-                                            self.check_for_row_in_list_table,
-                                            row_text='1:Buy milk')
+        self.retry_assertion(MAX_WAIT_SEC,
+                             INTERVAL_SEC,
+                             self.check_for_row_in_list_table,
+                             row_text='1:Buy milk')
 
         # Francis gets his own unique URL
         francis_list_url = self.browser.current_url
