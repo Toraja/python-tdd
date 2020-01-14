@@ -69,7 +69,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.retry_assertion(MAX_WAIT_SEC,
                              INTERVAL_SEC,
                              self.check_for_row_in_list_table,
-                             row_text='1:Buy peacock feathers')
+                             row_text='1: Buy peacock feathers')
 
         # There is still a text box invinting her to add another item.
         # She enters "Use peacock feathers to make a fly"
@@ -82,11 +82,11 @@ class NewVisitorTest(LiveServerTestCase):
         self.retry_assertion(MAX_WAIT_SEC,
                              INTERVAL_SEC,
                              self.check_for_row_in_list_table,
-                             row_text='1:Buy peacock feathers')
+                             row_text='1: Buy peacock feathers')
         self.retry_assertion(MAX_WAIT_SEC,
                              INTERVAL_SEC,
                              self.check_for_row_in_list_table,
-                             row_text='2:Use peacock feathers to make a fly')
+                             row_text='2: Use peacock feathers to make a fly')
 
     def test_multiple_users_can_start_lists_at_different_urls(self):
         # Edith starts a new to-do list
@@ -97,7 +97,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.retry_assertion(MAX_WAIT_SEC,
                              INTERVAL_SEC,
                              self.check_for_row_in_list_table,
-                             row_text='1:Buy peacock feathers')
+                             row_text='1: Buy peacock feathers')
 
         # She notices that her list has a unique URL
         edith_list_url = self.browser.current_url
@@ -123,7 +123,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.retry_assertion(MAX_WAIT_SEC,
                              INTERVAL_SEC,
                              self.check_for_row_in_list_table,
-                             row_text='1:Buy milk')
+                             row_text='1: Buy milk')
 
         # Francis gets his own unique URL
         francis_list_url = self.browser.current_url
@@ -156,7 +156,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.retry_assertion(MAX_WAIT_SEC,
                              INTERVAL_SEC,
                              self.check_for_row_in_list_table,
-                             row_text='1:testing')
+                             row_text='1: testing')
         inputbox = self.browser.find_element_by_id(ID_INPUTBOX)
         inputbox_x_cordinate = inputbox.location['x'] + \
             inputbox.size['width']/2
