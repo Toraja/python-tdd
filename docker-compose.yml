@@ -1,0 +1,29 @@
+version: '3.2'
+services:
+  app:
+    # variables in `env_file` are only effective inside containers, not in docker-compose file
+    environment:
+      - ENV_TYPE
+    build:
+      context: .
+    # Do not bind in staging/production environment
+    # Left here as reference
+    # volumes: # long syntax requries version >=3.2
+    #   - type: bind
+    #     source: .
+    #     target: /home/elspeth/sites/
+    #   - type: volume
+    #     source: devnull
+    #     target: /home/elspeth/sites/virtualenv
+    networks:
+      netty:
+        ipv4_address: 172.16.0.11
+# volumes:
+#   devnull:
+networks:
+  netty:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.0.0/24
+          # gateway: 172.16.0.1 # gateway somehow causes an error
