@@ -1,2 +1,2 @@
 [staging]
-host = "superlists-staging.ottg.eu:8000"
+host = "superlists-staging.ottg.eu"

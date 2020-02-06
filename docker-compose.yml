@@ -18,6 +18,15 @@ services:
     networks:
       netty:
         ipv4_address: 172.16.0.11
+  webserver:
+    image: nginx:latest
+    volumes:
+      - type: bind
+        source: ./nginx/conf.d
+        target: /etc/nginx/conf.d
+    networks:
+      netty:
+        ipv4_address: 172.16.0.10
 # volumes:
 #   devnull:
 networks:
