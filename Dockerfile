@@ -19,7 +19,9 @@ COPY --chown=${user}:${user} . /home/${user}/sites/
 WORKDIR /home/${user}/sites/
 
 RUN python3 -m venv virtualenv
-RUN ./virtualenv/bin/pip3 install --requirement requirements.txt
+RUN ./virtualenv/bin/pip3 install \
+	django==1.11 \
+	toml
 RUN ./virtualenv/bin/python manage.py migrate --noinput
 
 ENTRYPOINT ["./virtualenv/bin/python", "manage.py", "runserver", "0.0.0.0:8000"]
