@@ -21,7 +21,8 @@ WORKDIR /home/${user}/sites/
 RUN python3 -m venv virtualenv
 RUN ./virtualenv/bin/pip3 install \
 	django==1.11 \
+	gunicorn \
 	toml
 RUN ./virtualenv/bin/python manage.py migrate --noinput
 
-ENTRYPOINT ["./virtualenv/bin/python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["./virtualenv/bin/gunicorn", "-b", "0.0.0.0:8000", "superlists.wsgi:application"]
