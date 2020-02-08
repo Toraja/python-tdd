@@ -13,7 +13,7 @@ ID_INPUTBOX = 'id_new_item'
 
 class NewVisitorTest(StaticLiveServerTestCase):
 
-    debug = os.environ.get('debug') == '1'
+    debug = 'DEBUG_TEST' in os.environ
 
     def setUp(self):
         self.browser = webdriver.Firefox()
