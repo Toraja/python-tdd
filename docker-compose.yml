@@ -6,6 +6,8 @@ services:
       - ENV_TYPE
     build:
       context: .
+      args:
+        - ENV_TYPE
     # Do not bind in staging/production environment
     # Left here as reference
     # volumes: # long syntax requries version >=3.2

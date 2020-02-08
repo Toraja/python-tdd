@@ -1,6 +1,9 @@
 FROM python:3.6-alpine
 
 ARG user=${user:-elspeth}
+ARG ENV_TYPE
+
+ENV ENV_TYPE ${ENV_TYPE}
 
 RUN adduser --disabled-password --gecos '' ${user}
 

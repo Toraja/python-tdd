@@ -18,10 +18,11 @@ class NewVisitorTest(StaticLiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
         env = os.environ.get('ENV_TYPE')
-        if env:
-            self.config = toml.load(os.path.join(os.path.dirname(
-                os.path.abspath(__file__)), 'config.toml'))[env]
-            self.live_server_url = 'http://'+self.config["host"]
+        self.config = toml.load(os.path.join(os.path.dirname(
+            os.path.dirname(os.path.abspath(__file__))), 'config.toml'))[env]
+        host = self.config['host']
+        if host:
+            self.live_server_url = 'http://'+host
 
     def tearDown(self):
         if self.debug:

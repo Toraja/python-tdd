@@ -1,0 +1,14 @@
+[dev]
+host = ''
+debug = true
+allowed_hosts = ['localhost']
+
+[stg]
+host = 'superlists-staging.ottg.eu'
+debug = true
+allowed_hosts = ['app']
+
+[prd]
+host = 'superlists.ottg.eu'
+debug = false
+allowed_hosts = ['app']
