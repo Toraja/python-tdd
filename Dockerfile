@@ -15,10 +15,7 @@ WORKDIR /home/${user}/sites/
 
 ENV PATH /home/${user}/.local/bin:${PATH}
 
-RUN pip install \
-	django==1.11 \
-	gunicorn \
-	toml
+RUN pip install --requirement requirements.txt
 
 RUN python manage.py migrate --noinput
 
