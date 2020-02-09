@@ -13,11 +13,13 @@ COPY --chown=${user}:${user} . /home/${user}/sites/
 # so it is placed after COPY which creates the target dir.
 WORKDIR /home/${user}/sites/
 
-RUN python3 -m venv virtualenv
-RUN ./virtualenv/bin/pip3 install \
+ENV PATH /home/${user}/.local/bin:${PATH}
+
+RUN pip install \
 	django==1.11 \
 	gunicorn \
 	toml
-RUN ./virtualenv/bin/python manage.py migrate --noinput
 
-CMD ["./virtualenv/bin/gunicorn", "-b", "0.0.0.0:8000", "superlists.wsgi:application"]
+RUN python manage.py migrate --noinput
+
+CMD ["gunicorn", "-b", "0.0.0.0:8000", "superlists.wsgi:application"]
