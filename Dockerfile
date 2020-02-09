@@ -8,15 +8,17 @@ ENV ENV_TYPE ${ENV_TYPE}
 RUN adduser --disabled-password --gecos '' ${user}
 
 USER ${user}
-COPY --chown=${user}:${user} . /home/${user}/sites/
-# WORKDIR creates dir with its owner as root by default even if `USER` command is preceded
-# so it is placed after COPY which creates the target dir.
-WORKDIR /home/${user}/sites/
 
 ENV PATH /home/${user}/.local/bin:${PATH}
 
+COPY --chown=${user}:${user} requirements.txt /home/${user}/sites/
+# WORKDIR creates dir with its owner as root by default even if `USER` command is preceded
+# so it is placed after COPY which creates the target dir.
+WORKDIR /home/${user}/sites/
 RUN pip install --upgrade pip && \
 	pip install --no-cache-dir --requirement requirements.txt
+
+COPY --chown=${user}:${user} . /home/${user}/sites/
 
 RUN python manage.py migrate --noinput
 
