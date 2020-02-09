@@ -15,7 +15,8 @@ WORKDIR /home/${user}/sites/
 
 ENV PATH /home/${user}/.local/bin:${PATH}
 
-RUN pip install --requirement requirements.txt
+RUN pip install --upgrade pip && \
+	pip install --requirement requirements.txt
 
 RUN python manage.py migrate --noinput
 
