@@ -3,6 +3,7 @@ services:
   app:
     environment:
       - ENV_TYPE
+    restart: always
     build:
       context: app
       args:
@@ -16,6 +17,7 @@ services:
       netty:
         ipv4_address: 172.16.0.11
   webserver:
+    restart: always
     build:
       context: nginx
     volumes:
