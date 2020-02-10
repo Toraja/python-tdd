@@ -1,11 +1,6 @@
-.git
-.gitignore
 db.sqlite3
 geckodriver.log
 virtualenv
 __pycache__
 *.pyc
 /static
-*.vim
-nginx/
-.env

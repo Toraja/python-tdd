@@ -4,7 +4,7 @@ services:
     environment:
       - ENV_TYPE
     build:
-      context: .
+      context: app
       args:
         - ENV_TYPE
         - user=elspeth
