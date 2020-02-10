@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'h%t$f8=gv=*-$v(%)v@-m%^-+-@6lul4y=vmb!1ce!o8vzj7*v'
 
 config = toml.load(os.path.join(BASE_DIR, 'config.toml'))[
-    os.environ.get('ENV_TYPE')]
+    os.getenv('ENV_TYPE', 'prd')]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config['debug']

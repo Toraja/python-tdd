@@ -7,7 +7,6 @@ services:
     build:
       context: app
       args:
-        - ENV_TYPE
         - user=elspeth
     image: python-tdd_app_${ENV_TYPE}
     volumes:

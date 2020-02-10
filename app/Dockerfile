@@ -1,16 +1,10 @@
 FROM python:3.6-alpine
 
 ARG user
-ARG ENV_TYPE
-
-ENV ENV_TYPE ${ENV_TYPE}
-
 RUN adduser --disabled-password --gecos '' ${user}
-
 USER ${user}
 
 ENV PATH /home/${user}/.local/bin:${PATH}
-
 COPY --chown=${user}:${user} requirements.txt /home/${user}/sites/
 # WORKDIR creates dir with its owner as root by default even if `USER` command is preceded
 # so it is placed after COPY which creates the target dir.
@@ -21,7 +15,6 @@ RUN pip install --upgrade pip && \
 COPY --chown=${user}:${user} . /home/${user}/sites/
 
 RUN python manage.py collectstatic
-
 RUN python manage.py migrate --noinput
 
 EXPOSE 8000
