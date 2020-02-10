@@ -1,6 +1,6 @@
 FROM python:3.6-alpine
 
-ARG user=${user:-elspeth}
+ARG user
 ARG ENV_TYPE
 
 ENV ENV_TYPE ${ENV_TYPE}
@@ -19,6 +19,8 @@ RUN pip install --upgrade pip && \
 	pip install --no-cache-dir --requirement requirements.txt
 
 COPY --chown=${user}:${user} . /home/${user}/sites/
+
+RUN python manage.py collectstatic
 
 RUN python manage.py migrate --noinput
 
