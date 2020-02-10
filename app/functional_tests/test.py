@@ -4,7 +4,6 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import WebDriverException
 import time
 import os
-import toml
 
 MAX_WAIT_SEC = 10
 INTERVAL_SEC = 0.5
@@ -17,12 +16,9 @@ class NewVisitorTest(StaticLiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
-        env = os.environ.get('ENV_TYPE')
-        self.config = toml.load(os.path.join(os.path.dirname(
-            os.path.dirname(os.path.abspath(__file__))), 'config.toml'))[env]
-        host = self.config['host']
-        if host:
-            self.live_server_url = 'http://'+host
+        server_url = os.getenv('SERVER_URL')
+        if server_url:
+            self.live_server_url = 'http://'+server_url
 
     def tearDown(self):
         if self.debug:

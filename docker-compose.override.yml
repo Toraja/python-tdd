@@ -1,0 +1,16 @@
+version: '3.2'
+services:
+  app:
+    restart: 'no'
+    container_name: python-tdd_app_ovrd
+    volumes:
+      - type: bind
+        source: ./app
+        target: /home/elspeth/sites/
+  webserver:
+    container_name: python-tdd_webserver_ovrd
+    restart: 'no'
+    volumes:
+      - type: bind
+        source: ./nginx/conf.d
+        target: /etc/nginx/conf.d

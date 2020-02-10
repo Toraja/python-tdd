@@ -9,6 +9,7 @@ services:
       args:
         - ENV_TYPE
         - user=elspeth
+    image: python-tdd_app_${ENV_TYPE}
     volumes:
       - type: volume
         source: static
