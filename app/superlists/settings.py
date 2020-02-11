@@ -20,7 +20,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'h%t$f8=gv=*-$v(%)v@-m%^-+-@6lul4y=vmb!1ce!o8vzj7*v'
+SECRET_FILE = os.path.join(BASE_DIR, 'secret.key')
+try:
+    with open(SECRET_FILE) as sf:
+        SECRET_KEY = sf.read().strip()
+except IOError:
+    try:
+        from django.core.management.utils import get_random_secret_key
+        SECRET_KEY = get_random_secret_key()
+        with open(SECRET_FILE, 'w') as sf:
+            sf.write(SECRET_KEY)
+    except IOError:
+        Exception(f'Please create a {SECRET_FILE} file with random characters'
+                  'to generate your secret key!')
 
 config = toml.load(os.path.join(BASE_DIR, 'config.toml'))[
     os.getenv('ENV_TYPE', 'prd')]

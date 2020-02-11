@@ -6,3 +6,4 @@ __pycache__
 /static/
 *.vim
 .env
+secret.key
