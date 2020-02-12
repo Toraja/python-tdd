@@ -14,3 +14,6 @@ services:
       - type: bind
         source: ./nginx/conf.d
         target: /etc/nginx/conf.d
+    ports:
+    - target: 80
+      published: 8080
