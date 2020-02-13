@@ -10,6 +10,3 @@ services:
   webserver:
     container_name: python-tdd_webserver_ovrd
     restart: 'no'
-    ports:
-    - target: 80
-      published: 8080
