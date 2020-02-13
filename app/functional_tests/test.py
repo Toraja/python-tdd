@@ -4,10 +4,15 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import WebDriverException
 import time
 import os
+from dotenv import load_dotenv
 
 MAX_WAIT_SEC = 10
 INTERVAL_SEC = 0.5
 ID_INPUTBOX = 'id_new_item'
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+load_dotenv(dotenv_path=os.path.join(
+    os.path.dirname(BASE_DIR), '.env'), override=True)
 
 
 class NewVisitorTest(StaticLiveServerTestCase):
