@@ -1,6 +1,6 @@
 server {
 	listen 80;
-	server_name superlists-staging.ottg.eu;
+	server_name ${DOMAIN};
 
 	location /static {
 		alias /opt/app/static;
@@ -8,6 +8,7 @@ server {
 
 	location / {
 		proxy_pass http://app:8000;
+		proxy_set_header Host ${DOLLAR}host;
 	}
 }
 

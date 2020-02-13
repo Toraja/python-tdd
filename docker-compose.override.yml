@@ -10,10 +10,6 @@ services:
   webserver:
     container_name: python-tdd_webserver_ovrd
     restart: 'no'
-    volumes:
-      - type: bind
-        source: ./nginx/conf.d
-        target: /etc/nginx/conf.d
     ports:
     - target: 80
       published: 8080

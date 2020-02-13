@@ -1,11 +1,11 @@
 [dev]
 debug = true
-allowed_hosts = ['localhost', 'app']
+allowed_hosts = []
 
 [stg]
 debug = true
-allowed_hosts = ['app']
+allowed_hosts = ['superlists-staging.ottg.eu']
 
 [prd]
 debug = false
-allowed_hosts = ['app']
+allowed_hosts = ['superlists.ottg.eu']

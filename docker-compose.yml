@@ -16,6 +16,8 @@ services:
     networks:
       netty:
   webserver:
+    environment:
+      - DOMAIN
     restart: always
     build:
       context: nginx
