@@ -1,7 +1,6 @@
-version: '3.2'
+version: '3.7'
 services:
   app:
-    restart: 'no'
     container_name: python-tdd_app_ovrd
     volumes:
       - type: bind
@@ -9,4 +8,3 @@ services:
         target: /home/elspeth/sites/
   webserver:
     container_name: python-tdd_webserver_ovrd
-    restart: 'no'

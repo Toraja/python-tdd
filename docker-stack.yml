@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+  app:
+    image: toraja/python-tdd_app:0.1
+    deploy:
+      placement:
+        constraints:
+          # Empty value for label is not allowed here, so `yes` is there to
+          # avoid the error (nodes also have to have label `app=yes`)
+          - node.labels.app == yes
+      replicas: 1
+      # TODO uncomment when `replicas` is increased
+      # update_config:
+      #   parallelism: 1
+      #   delay: 10s
+      #   monitor: 5s
+      #   failure_action: rollback
+  webserver:
+    image: toraja/python-tdd_webserver:0.1
+    deploy:
+      placement:
+        constraints:
+          - node.labels.web == yes
+      replicas: 1
+      # TODO uncomment when `replicas` is increased
+      # update_config:
+      #   parallelism: 1
+      #   delay: 10s
+      #   monitor: 5s
+      #   failure_action: rollback

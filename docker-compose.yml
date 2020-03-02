@@ -1,9 +1,8 @@
-version: '3.2'
+version: '3.7'
 services:
   app:
-    environment:
-      - ENV_TYPE
-    restart: always
+    env_file:
+      - ./.env
     build:
       context: app
       args:
@@ -15,9 +14,8 @@ services:
     networks:
       netty:
   webserver:
-    environment:
-      - DOMAIN
-    restart: always
+    env_file:
+      - ./.env
     build:
       context: nginx
     volumes:
