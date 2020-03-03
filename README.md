@@ -52,8 +52,8 @@ docker-compose up
 
 ### UT
 ```sh
-## {app} is app name such as 'list'
-python manage.py test {app}
+## <APP> is app name such as 'list'
+python manage.py test <APP>
 ```
 
 ### FT
@@ -61,7 +61,7 @@ python manage.py test {app}
 python manage.py test functional_tests
 
 # To run specific test
-python manage.py test functional_tests.test.{Test class name}.{Test function name}
+python manage.py test functional_tests.test.<TEST CLASS NAME>.<TEST FUNCTION NAME>
 # e.g.
 python app/manage.py test functional_tests.test.NewVisitorTest.test_can_start_a_list_for_one_user
 ```
