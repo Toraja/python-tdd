@@ -14,7 +14,6 @@ RUN pip install --upgrade pip && \
 
 COPY --chown=${user}:${user} . /home/${user}/sites/
 
-RUN python manage.py collectstatic
 RUN python manage.py migrate --noinput
 
 EXPOSE 8000

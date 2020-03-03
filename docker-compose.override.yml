@@ -10,3 +10,7 @@ services:
         target: /home/elspeth/sites/
   webserver:
     container_name: python-tdd_webserver_ovrd
+    volumes:
+      - type: bind
+        source: ./app/static
+        target: /opt/app/static

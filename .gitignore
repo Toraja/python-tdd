@@ -3,6 +3,7 @@ geckodriver.log
 virtualenv
 __pycache__
 *.pyc
+*/static
 *.vim
 .env
 secret.key

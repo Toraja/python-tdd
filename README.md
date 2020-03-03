@@ -72,6 +72,18 @@ To test against docker container, set environment variables in `.env` before
 starting up docker containers (or restart them if already running).  
 Make sure the domain is added to `/etc/hosts`.  
 
+### Build
+As volume sharing is not an option to share static files between `app` and
+`webserver` containers, static files must be included in `webserver` image.  
+This requires running `collectstatic` and move those files into `webserver`
+context.  
+To avoid forgetting this process, `Makefile` is provided to run all the
+necessary steps.  
+To build single service, run:
+```sh
+make <service name>
+```
+
 ### Deploy
 Make sure docker is in swarm mode. To find out, issue the command below and see
 if the output is `active`.
