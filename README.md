@@ -50,13 +50,16 @@ To launch full stack
 docker-compose up
 ```
 
-### UT
+### Test
+Shortcut is provided with `Makefile`.
+
+#### UT
 ```sh
 ## <APP> is app name such as 'list'
 python manage.py test <APP>
 ```
 
-### FT
+#### FT
 ```sh
 python manage.py test functional_tests
 
