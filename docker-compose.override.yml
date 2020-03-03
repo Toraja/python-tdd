@@ -1,6 +1,8 @@
 version: '3.7'
 services:
   app:
+    # container_name is added so that it is easy to tell whehter currently
+    # running containers are started with or without override compose file
     container_name: python-tdd_app_ovrd
     volumes:
       - type: bind
